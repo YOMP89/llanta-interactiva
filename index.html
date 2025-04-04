@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llanta Interactiva</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #llanta {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #444 20%, transparent 20%),
+                        radial-gradient(circle, #222 10%, transparent 10%),
+                        linear-gradient(#555 10px, transparent 0);
+            background-size: 30% 30%, 15% 15%, 100% 100%;
+            background-position: center;
+            animation: rotar 2s linear infinite;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        @keyframes rotar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .controles {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="llanta"></div>
+    <div class="controles">
+        <button onclick="acelerar()">Acelerar</button>
+        <button onclick="frenar()">Frenar</button>
+    </div>
+
+    <script>
+        let duracion = 2; // Duración inicial en segundos
+        const llanta = document.getElementById('llanta');
+
+        function acelerar() {
+            if (duracion > 0.5) {
+                duracion -= 0.2;
+                actualizarAnimacion();
+            }
+        }
+
+        function frenar() {
+            if (duracion < 4) {
+                duracion += 0.2;
+                actualizarAnimacion();
+            }
+        }
+
+        function actualizarAnimacion() {
+            llanta.style.animationDuration = `${duracion}s`;
+        }
+    </script>
+</body>
+</html>
